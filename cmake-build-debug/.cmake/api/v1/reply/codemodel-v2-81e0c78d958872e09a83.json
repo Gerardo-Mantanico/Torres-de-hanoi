@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/HP/CLionProjects/Torre-hanoi/cmake-build-debug",
-		"source" : "C:/Users/HP/CLionProjects/Torre-hanoi"
+		"build" : "C:/Users/HP/CLionProjects/Torres-de-hanoi/cmake-build-debug",
+		"source" : "C:/Users/HP/CLionProjects/Torres-de-hanoi"
 	},
 	"version" : 
 	{

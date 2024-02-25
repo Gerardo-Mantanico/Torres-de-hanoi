@@ -13,10 +13,10 @@ public:
     Pila(); //contructor
     ~Pila();    //destrucor
     void push(Disco disco);
-    Disco pop();
+    Disco pop(int size);
     Nodo* discos();
     void imprimir();
-    int ultimo_valor();
+    Disco ultimo_valor();
 };
 
 

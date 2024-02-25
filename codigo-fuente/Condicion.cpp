@@ -33,13 +33,7 @@ void generar_discos_aleatorio(Pila *pila) {
 void push( int torre , Disco disco){
     switch (torre) {
         case 1:
-                if(pila1->discos()->disco.size>disco.size ){
                     pila1->push(disco);
-                }
-                else {
-                    cout<<"No se puede realizar ese movimento"<<endl;
-                }
-
             break;
         case 2:
                 pila2->push(disco);
@@ -53,22 +47,22 @@ void push( int torre , Disco disco){
     }
 }
 
-int  size_disco( int torre ){
+Disco  size_disco( int torre ){
     if(torre==1){return pila1->ultimo_valor();}
     else if(torre==2){return pila2->ultimo_valor();}
     else if(torre==3){return pila3->ultimo_valor();}
 }
 
-Disco  pop( int torre){
+Disco  pop( int torre, int size){
     switch (torre) {
         case 1:
-                return pila1->pop();
-
+            return pila1->pop(size);
+            break;
         case 2:
-            return pila2->pop();
+            return pila2->pop(size);
             break;
         case 3:
-            return pila3->pop();
+            return pila3->pop(size);
             break;
         default:
             cout << "Opción no válida" << std::endl;
@@ -79,23 +73,28 @@ Disco  pop( int torre){
 
 void condiciones_juego(){
     cout <<"Bienvenido al juego de las Torres de Hanoi" << endl;
-    int no_disco;
-    int no_torre;
+    int torre1;
+    int torre2;
     while (caracter!='S'){
-        cout<<"Ingrese  el numero de Torre:  ";
-        cin>>no_disco;
-        while (no_disco <1 || no_disco > 8) {
+        cout<<"Ingrese  el numero de la torre acutal :  ";
+        cin>>torre1;
+        while (torre1 <1 || torre1 > 8) {
             cout << "Numero de disco fuera de rango. Insertar un  numero de disco (1-7): ";
-            cin >> no_disco;
+            cin >> torre1;
         }
-        cout <<endl<<"Ingrese el numero de la torre:  ";
-        cin >> no_torre;
-        while (no_torre <1 || no_disco> 4) {
+        cout<<"Ingrese el numero de la torre siguiente :  ";
+        cin >> torre2;
+        while (torre2 <1 || torre2> 4) {
             cout <<"Numero fuera de rango. Insertar un número de torre (1-3): ";
-            cin >> no_torre;
+            cin >> torre2;
         }
-        push(no_torre, pop(no_disco));
+        Disco disco_final= size_disco(torre1);
+        Disco disco_aux=pop(torre1, size_disco(torre2).size);
+        if(disco_aux.size!=NULL){
+            push(torre2,disco_aux);
+        }
 
+        else if(disco_aux.size==NULL && disco_final.size!=0){push(torre1,disco_final);}
         pintar->pintar_tabla(pila1 , pila2, pila3);
     }
 

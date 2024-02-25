@@ -2,6 +2,7 @@
 #include "../clases/PintarTorre.h"
 #include "../clases/Pila.h"
 #include "../clases/Disco.h"
+#include <stack>
 using namespace  std;
 
 PintarTorre::PintarTorre() {}
@@ -43,19 +44,41 @@ PintarTorre::PintarTorre() {}
      }
 }
 
-Disco* cargar_arreglos(Pila *pila){
+Pila imprimir(Pila *pila){
+    stack<Disco> aux;
+    Nodo *tem= pila->discos();
+    //insertamos los elementos en la pila
+    while (tem !=NULL){
+        aux.push(tem->disco);
+        tem=tem->siguiente;
+    }
+    //imprimir en orden inverso
+    while (!aux.empty()){
+
+    }
+
+}
+
+Disco* cargar_arreglos(Pila *pila) {
     Nodo *aux = pila->discos();
-    Disco *torre = new Disco[7]{}; // asignación de memoria en el heap
+    stack<Disco> temp; // Pila temporal para almacenar los discos
+    Disco *torre = new Disco[7]{};
     int cont = 6;
-    while(aux != NULL && cont < 7) { // asegúrate de no exceder el tamaño del arreglo
-        cout << aux->disco.size <<"->"<<aux->disco.posicion<<"   ";
-        torre[cont] = aux->disco;
+    while (aux != nullptr && cont < 7) {
+        temp.push(aux->disco);
+        //cout<< " D. " << aux->disco.posicion<<"   Tama;no: "<< aux->disco.size << endl;
         aux = aux->siguiente;
+    }
+    while (!temp.empty()) {
+        torre[cont] = temp.top(); // Asignamos el disco de la cima de la pila temporal al array
+        temp.pop(); // Quitamos el disco de la cima de la pila temporal
         cont--;
     }
     return torre;
 }
+
 void PintarTorre::pintar_tabla(Pila *pila1, Pila *pila2, Pila *pila3) {
+   pila1->imprimir();
    Disco *torre1= cargar_arreglos(pila1);
    Disco *torre2= cargar_arreglos(pila2);
    Disco *torre3= cargar_arreglos(pila3);
