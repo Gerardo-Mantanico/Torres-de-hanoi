@@ -12,6 +12,7 @@ Pila *pila1;
 Pila *pila2;
 Pila *pila3;
 PintarTorre *pintar;
+Disco tabla[]{};
 
 void generar_discos_aleatorio(Pila *pila) {
         int sizes[]= {3, 5, 7, 9, 11, 13, 15};
@@ -24,9 +25,17 @@ void generar_discos_aleatorio(Pila *pila) {
             Disco disc;
             disc.size=discos[i];
             disc.posicion=i+1;
+            tabla[i].size=discos[i];
+            tabla[i].posicion=i+1;
             pila->push(disc);
-
         }
+}
+
+void imprimir_tabla(){
+    for (int i = 0; i < 7; ++i) {
+        cout<< " D. " <<tabla[i].posicion<<"   Tamaño: "<<tabla[i].size<<"    ";
+    }
+    cout<<endl;
 }
 
 
@@ -95,7 +104,7 @@ void condiciones_juego(){
         }
 
         else if(disco_aux.size==NULL && disco_final.size!=0){push(torre1,disco_final);}
-        pintar->pintar_tabla(pila1 , pila2, pila3);
+        pintar->pintar_tabla(pila1 , pila2, pila3,tabla);
     }
 
 }
@@ -105,6 +114,6 @@ void Condiciones::jugar() {
     pila2= new Pila();
     pila3= new Pila();
     generar_discos_aleatorio(pila1);
-    pintar->pintar_tabla(pila1 , pila2, pila3);
+    pintar->pintar_tabla(pila1 , pila2, pila3,tabla);
     condiciones_juego ();
 }

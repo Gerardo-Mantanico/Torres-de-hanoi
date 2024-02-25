@@ -76,9 +76,17 @@ Disco* cargar_arreglos(Pila *pila) {
     }
     return torre;
 }
+void imprimir_tabla_valores(Disco tabla[]){
+    cout<<endl<<endl<<endl;
+    for (int i = 0; i < 7; ++i) {
+        cout<< " D."<<tabla[i].posicion<<" Taman1o: "<<tabla[i].size<<"  ";
+    }
+    cout<<endl;
+}
 
-void PintarTorre::pintar_tabla(Pila *pila1, Pila *pila2, Pila *pila3) {
-   pila1->imprimir();
+void PintarTorre::pintar_tabla(Pila *pila1, Pila *pila2, Pila *pila3, Disco disco[]) {
+   //pila1->imprimir();
+   imprimir_tabla_valores(disco);
    Disco *torre1= cargar_arreglos(pila1);
    Disco *torre2= cargar_arreglos(pila2);
    Disco *torre3= cargar_arreglos(pila3);

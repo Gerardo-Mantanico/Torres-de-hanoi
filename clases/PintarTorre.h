@@ -9,6 +9,6 @@ class PintarTorre {
 public:
     PintarTorre();
     ~PintarTorre();
-    void pintar_tabla(Pila *pila1 , Pila *pila2, Pila *pila3);
+    void pintar_tabla(Pila *pila1 , Pila *pila2, Pila *pila3, Disco disco[]);
 };
 #endif //TORRE_HANOI_PINTARTORRE_H
